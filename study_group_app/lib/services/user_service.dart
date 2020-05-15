@@ -24,9 +24,14 @@ class UserService {
 
   // Updates user name within the 'users' collection
   Future updateUserName(String userName) async {
-    return await userCollection
-      .document(uid)
-      .updateData({'userName': userName});
+    try {
+      await userCollection
+        .document(uid)
+        .updateData({'userName': userName});
+        return 1;
+    } catch (error) {
+      return null;
+    }
   }
 
   // Updates first name within the 'users' collection
